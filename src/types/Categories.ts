@@ -1,4 +1,4 @@
- export type Categories = {
-  id: string;
+export interface ICategories {
+  id: number;
   name: string;
-};
+}

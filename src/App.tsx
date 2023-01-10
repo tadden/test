@@ -1,21 +1,17 @@
 import React from "react";
-import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-
-const queryClient = new QueryClient()
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   return (
     <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          {/* <Route path="cats/category/*"></Route> */}
-        </Routes>
-      </QueryClientProvider>
+      <Routes>
+        <Route path="/*" element={<HomePage />}></Route>
+        <Route path="/:id/" element={<CategoryPage />}></Route>
+      </Routes>
     </div>
   );
 }
 
-export default App;  
+export default App;
