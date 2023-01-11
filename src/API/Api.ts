@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ICategories } from "../../types/Categories";
-import { ICats } from "../../types/Items";
+import { ICategories } from "../types/Categories";
+import { ICats } from "../types/Items";
 
 export const URL = {
   BASE: "https://api.thecatapi.com/v1",
@@ -14,13 +14,11 @@ axios.defaults.params = {
 
 export async function getCategories(): Promise<ICategories[]> {
   const { data } = await axios(`${URL.BASE}/categories`);
-  // console.log(data);
   return data;
 }
 
 export async function getRandomCats(): Promise<ICats[]> {
   const { data } = await axios(`${URL.BASE}/images/search?limit=10`);
-  // console.log(data);
   return data;
 }
 export async function getCatsById(
@@ -30,6 +28,5 @@ export async function getCatsById(
   const { data } = await axios(
     `${URL.BASE}/images/search?limit=10&page=${page}&category_ids=${id}`
   );
-  // console.log(data);
   return data;
 }

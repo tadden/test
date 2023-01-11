@@ -1,28 +1,30 @@
 import { useQuery } from "react-query";
-import { getRandomCats } from "../components/API/Api";
+import { getRandomCats } from "../API/Api";
 import { ICats } from "../types/Items";
-import Sidebar from "../components/Sidebar";
-import Cats from "../components/Cats";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Cats from "../components/Cats/Cats";
+import styled from "styled-components";
+import Error from "../components/Error";
 
-export default function HomePage() {
+const HomePage = () => {
   const { isError, isLoading, data, error } = useQuery<ICats[]>(
     ["cats"],
     getRandomCats
   );
 
-  if (isLoading) {
-    console.log("Loading...");
-    return <div>Loading...</div>;
-  }
   if (isError) {
     console.log("Error", error);
-    return <div>Error...</div>;
+    return <Error />;
   }
 
   return (
-    <div>
+    <Wrapper>
       <Sidebar />
       <Cats isLoading={isLoading} cats={data} />
-    </div>
+    </Wrapper>
   );
-}
+};
+
+export default HomePage;
+
+const Wrapper = styled("div")``;

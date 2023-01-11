@@ -1,44 +1,57 @@
 import { useQuery } from "react-query";
 import { useState } from "react";
-import { getCatsById } from "../components/API/Api";
-import { ICats } from "../types/Items";
 import { useParams } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Cats from "../components/Cats";
+import { getCatsById } from "../API/Api";
+import { ICats } from "../types/Items";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Cats from "../components/Cats/Cats";
+import styled from "styled-components";
+import Error from "../components/Error";
 
-export default function CategoryPage() {
+const CategoryPage = () => {
   const [page, setPage] = useState(0);
 
   const { id } = useParams();
+
   const { isError, isLoading, data, error } = useQuery<ICats[]>(
     ["cats", id, page],
     () => getCatsById(id, page)
   );
 
   if (isError) {
-    console.log("Error", error);
-    return <div>Error...</div>;
+    console.log(error);
+    return <Error />;
   }
 
-  function handleIncrementPage() {
+  const handleIncrementPage = () => {
     setPage((page) => page + 1);
-  }
-  function handleDecrementPage() {
+  };
+  const handleDecrementPage = () => {
     setPage((page) => page - 1);
-  }
+  };
 
   return (
-    <>
-      <div>
+    <Wrapper>
+      <ContentWrapper>
         <Sidebar />
         <Cats isLoading={isLoading} cats={data} />
-      </div>
-      <div>
-        <button onClick={handleDecrementPage} disabled={page === 0}>
+      </ContentWrapper>
+      <ButtonWrapper>
+        <Button onClick={handleDecrementPage} disabled={page === 0}>
           Prev page
-        </button>
-        <button onClick={handleIncrementPage}>Next page</button>
-      </div>
-    </>
+        </Button>
+        <Button onClick={handleIncrementPage}>Next page</Button>
+      </ButtonWrapper>
+    </Wrapper>
   );
-}
+};
+
+export default CategoryPage;
+
+const Wrapper = styled("div")``;
+
+const ContentWrapper = styled("div")``;
+
+const ButtonWrapper = styled("div")``;
+
+const Button = styled("button")``;
