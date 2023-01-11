@@ -1,13 +1,11 @@
-import React from "react";
 import { useQuery } from "react-query";
 import { getRandomCats } from "../components/API/Api";
 import { ICats } from "../types/Items";
-// import PageContainer from "../components/PageContainer";
 import Sidebar from "../components/Sidebar";
 import Cats from "../components/Cats";
 
 export default function HomePage() {
-  const { isError, isSuccess, isLoading, data, error } = useQuery<ICats[]>(
+  const { isError, isLoading, data, error } = useQuery<ICats[]>(
     ["cats"],
     getRandomCats
   );
@@ -24,7 +22,7 @@ export default function HomePage() {
   return (
     <div>
       <Sidebar />
-      <Cats cats={data} />
+      <Cats isLoading={isLoading} cats={data} />
     </div>
   );
 }

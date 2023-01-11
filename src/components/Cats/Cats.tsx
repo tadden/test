@@ -1,12 +1,15 @@
-import React from "react";
-import { useParams } from "react-router-dom";
 import { ICats } from "../../types/Items";
 
 type Props = {
+  isLoading: boolean;
   cats: ICats[] | undefined;
 };
 
-export default function Cats({ cats }: Props) {
+export default function Cats({ isLoading, cats }: Props) {
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <ul>

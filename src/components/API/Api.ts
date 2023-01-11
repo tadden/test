@@ -23,10 +23,13 @@ export async function getRandomCats(): Promise<ICats[]> {
   // console.log(data);
   return data;
 }
-export async function getCatsById(id: string | undefined): Promise<ICats[]> {
+export async function getCatsById(
+  id: string | undefined,
+  page: number
+): Promise<ICats[]> {
   const { data } = await axios(
-    `${URL.BASE}/images/search?limit=10&category_ids=${id}`
+    `${URL.BASE}/images/search?limit=10&page=${page}&category_ids=${id}`
   );
-  console.log(data);
+  // console.log(data);
   return data;
 }

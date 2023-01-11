@@ -1,22 +1,28 @@
-import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { ICategories } from "../../types/Categories";
 import { getCategories } from "../API/Api";
 
 export default function Sidebar() {
-  const { isError, isSuccess, isLoading, data, error } = useQuery<
-    ICategories[]
-  >(["categories"], getCategories);
+  const { isError, isLoading, data, error } = useQuery<ICategories[]>(
+    ["categories"],
+    getCategories
+  );
 
-  // console.log(data);
+  if (isError) {
+    console.log("Error", error);
+    return <div>Error...</div>;
+  }
+
   return (
     <div>
-      {data?.map(({ name, id }) => (
-        <li key={id}>
-          <Link to={`/${id}`}>{name}</Link>
-        </li>
-      ))}
+      <ul>
+        {data?.map(({ name, id }) => (
+          <li key={id}>
+            <Link to={`/${id}`}>{name}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
