@@ -4,8 +4,6 @@ import styled from "styled-components";
 import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
 
-// import Layout from "./components/Layout/Layout";
-
 const App = () => {
   return (
     <>
@@ -15,7 +13,6 @@ const App = () => {
           <Route path="/*" element={<HomePage />}></Route>
           <Route path="/:id" element={<CategoryPage />}></Route>
         </Routes>
-        {/* <Layout /> */}
       </AppWrapper>
     </>
   );
