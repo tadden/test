@@ -6,7 +6,7 @@ type Props = {
 };
 const CatItem = ({ id, url }: Props) => {
   return (
-    <ListItem key={id}>
+    <ListItem>
       <Img src={url} alt={id} />
     </ListItem>
   );
@@ -14,6 +14,11 @@ const CatItem = ({ id, url }: Props) => {
 
 export default CatItem;
 
-const ListItem = styled("li")``;
+const ListItem = styled("li")`
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+`;
 
-const Img = styled("img")``;
+const Img = styled("img")`
+  width: 100%;
+  height: 100%;
+`;

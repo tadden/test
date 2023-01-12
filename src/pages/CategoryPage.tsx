@@ -2,18 +2,18 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCatsById } from "../API/Api";
-import { ICats } from "../types/Items";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Cats from "../components/Cats/Cats";
+import { Items } from "../types/Items";
 import styled from "styled-components";
 import Error from "../components/Error";
+import { Cats, Sidebar } from "../components";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const CategoryPage = () => {
   const [page, setPage] = useState(0);
 
   const { id } = useParams();
 
-  const { isError, isLoading, data, error } = useQuery<ICats[]>(
+  const { isError, isLoading, data, error } = useQuery<Items[]>(
     ["cats", id, page],
     () => getCatsById(id, page)
   );
@@ -32,15 +32,17 @@ const CategoryPage = () => {
 
   return (
     <Wrapper>
+      <Sidebar />
       <ContentWrapper>
-        <Sidebar />
         <Cats isLoading={isLoading} cats={data} />
       </ContentWrapper>
       <ButtonWrapper>
         <Button onClick={handleDecrementPage} disabled={page === 0}>
-          Prev page
+          <FiChevronLeft />
         </Button>
-        <Button onClick={handleIncrementPage}>Next page</Button>
+        <Button onClick={handleIncrementPage}>
+          <FiChevronRight />
+        </Button>
       </ButtonWrapper>
     </Wrapper>
   );
@@ -52,6 +54,19 @@ const Wrapper = styled("div")``;
 
 const ContentWrapper = styled("div")``;
 
-const ButtonWrapper = styled("div")``;
+const ButtonWrapper = styled("div")`
+  margin-top: 20px;
+  text-align: center;
+`;
 
-const Button = styled("button")``;
+const Button = styled("button")`
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+`;

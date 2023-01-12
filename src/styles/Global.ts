@@ -93,7 +93,6 @@ video {
   text-decoration: none;
 }
 
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -111,8 +110,7 @@ section {
 body {
   font-family: 'Montserrat', sans-serif;
   line-height: 1;
-  background-color: #FFFF00;
-
+  background-color: #f1edc1;;
 }
 
 ol,

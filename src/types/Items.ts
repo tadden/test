@@ -1,4 +1,4 @@
-export interface ICats {
+export interface Items {
   id: string;
   url: string;
 }
