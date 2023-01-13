@@ -4,16 +4,16 @@ import { Link, useParams } from "react-router-dom";
 import { Categories } from "../../../types/Categories";
 import { getCategories } from "../../../API/Api";
 import Item from "../SidebarItem/SidebarItem";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import Error from "../../Error";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaCat } from "react-icons/fa";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-  const { id: urlId } = useParams();
 
-  console.log();
+  const { id: urlId } = useParams();
 
   const { isError, data, error } = useQuery<Categories[]>(
     ["categories"],
@@ -35,6 +35,10 @@ const Sidebar = () => {
         <MenuBars to="#">
           <FaBars onClick={handleSidebar} />
         </MenuBars>
+        <HomeLink to="/">
+          <LinkText>Cats</LinkText>
+          <FaCat />
+        </HomeLink>
       </NavBar>
       <Nav isActive={sidebar}>
         <SideBarList onClick={handleSidebar}>
@@ -67,26 +71,34 @@ const ItemWrapper = styled("div")`
 const NavBar = styled("div")`
   height: 80px;
   display: flex;
-
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
+`;
+
+const HomeLink = styled(Link)`
+  font-size: 2rem;
+  margin-right: 40px;
+  text-align: center;
+  color: #ffc847;
+`;
+
+const LinkText = styled("span")`
+  font-weight: bold;
+  margin-right: 5px;
 `;
 
 const MenuBars = styled(Link)`
   margin-left: 20px;
   font-size: 2rem;
+  color: #ffc847;
   background: none;
 `;
 
-interface INav {
-  isActive: boolean;
-}
-
-const Nav = styled("nav")<INav>`
-  background-color: #f3b86a;
+const Nav = styled("nav")<{ isActive: boolean }>`
+  background-color: #ffbc1f;
   width: 200px;
   height: 100vh;
-  padding: 20px;
+  padding: 20px 0;
   position: fixed;
   top: 0;
   left: ${(props) => (props.isActive ? "0" : "-100")}%;
@@ -96,7 +108,8 @@ const SideBarList = styled("ul")``;
 
 const MenuClose = styled(Link)`
   display: flex;
-  justify-content: start;
+  justify-content: end;
+  margin-right: 10px;
   font-size: 2rem;
-  background: none;
+  color: black;
 `;

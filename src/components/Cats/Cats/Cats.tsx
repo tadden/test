@@ -5,11 +5,12 @@ import Loader from "../../Loader";
 
 type Props = {
   isLoading: boolean;
+  isFetching?: boolean;
   cats: Items[] | undefined;
 };
 
-const Cats = ({ isLoading, cats }: Props) => {
-  if (isLoading) {
+const Cats = ({ isLoading, isFetching, cats }: Props) => {
+  if (isLoading || isFetching) {
     return <Loader />;
   }
 

@@ -37,4 +37,5 @@ const NavItem = styled("li")<{ isActive: boolean }>`
 
 const NavLink = styled(Link)`
   color: #ffff;
+  width: 100%;
 `;

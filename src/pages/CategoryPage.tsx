@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCatsById } from "../API/Api";
 import { Items } from "../types/Items";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import Error from "../components/Error";
 import { Cats, Sidebar } from "../components";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";

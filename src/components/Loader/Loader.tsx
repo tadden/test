@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { ColorRing } from "react-loader-spinner";
 
 const Loader = () => {
