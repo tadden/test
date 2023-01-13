@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Items } from "../../../types/Items";
 import CatItem from "../CatItem";
 import Loader from "../../Loader";
@@ -15,19 +15,15 @@ const Cats = ({ isLoading, isFetching, cats }: Props) => {
   }
 
   return (
-    <Wrapper>
-      <CatsList>
-        {cats?.map(({ id, url }) => (
-          <CatItem key={id} id={id} url={url} />
-        ))}
-      </CatsList>
-    </Wrapper>
+    <CatsList>
+      {cats?.map(({ id, url }) => (
+        <CatItem key={id} id={id} url={url} />
+      ))}
+    </CatsList>
   );
 };
 
 export default Cats;
-
-const Wrapper = styled("div")``;
 
 const CatsList = styled("ul")`
   display: grid;

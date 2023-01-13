@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 type Props = {
   id: string;
   url: string;
 };
+
 const CatItem = ({ id, url }: Props) => {
   return (
     <ListItem>
