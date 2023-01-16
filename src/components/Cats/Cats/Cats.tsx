@@ -1,16 +1,17 @@
 import styled from "styled-components/macro";
 import { Items } from "../../../types/Items";
-import CatItem from "../CatItem";
-import Loader from "../../Loader";
+import Loader from "../../Loader/Loader";
+import CatItem from "../CatItem/CatItem";
 
 type Props = {
   isLoading: boolean;
   isFetching?: boolean;
+  isRefetching?: boolean;
   cats: Items[] | undefined;
 };
 
-const Cats = ({ isLoading, isFetching, cats }: Props) => {
-  if (isLoading || isFetching) {
+const Cats = ({ isLoading, isFetching, isRefetching, cats }: Props) => {
+  if (isLoading || isFetching || isRefetching) {
     return <Loader />;
   }
 

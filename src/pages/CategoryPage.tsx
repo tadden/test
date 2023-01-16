@@ -4,24 +4,20 @@ import { useParams } from "react-router-dom";
 import { getCatsById } from "../API/Api";
 import { Items } from "../types/Items";
 import styled from "styled-components/macro";
-import Error from "../components/Error";
-import { Cats, Sidebar } from "../components";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Error from "../components/Error/Error";
+import Sidebar from "../components/Sidebar/Sidebar/Sidebar";
+import Cats from "../components/Cats/Cats/Cats";
 
 const CategoryPage = () => {
   const [page, setPage] = useState(0);
 
   const { id } = useParams();
 
-  const { isError, isLoading, data, error } = useQuery<Items[]>(
+  const { isError, isLoading, data, error, isRefetching } = useQuery<Items[]>(
     ["cats", id, page],
     () => getCatsById(id, page)
   );
-
-  if (isError) {
-    console.log(error);
-    return <Error />;
-  }
 
   const handleIncrementPage = () => {
     setPage((page) => page + 1);
@@ -30,12 +26,17 @@ const CategoryPage = () => {
     setPage((page) => page - 1);
   };
 
+  if (isError) {
+    console.log(error);
+    return <Error />;
+  }
+
   return (
-    <Wrapper>
+    <>
       <Sidebar />
-      <ContentWrapper>
-        <Cats isLoading={isLoading} cats={data} />
-      </ContentWrapper>
+
+      <Cats isRefetching={isRefetching} isLoading={isLoading} cats={data} />
+
       <ButtonWrapper>
         <Button onClick={handleDecrementPage} disabled={page === 0}>
           <FiChevronLeft />
@@ -44,15 +45,11 @@ const CategoryPage = () => {
           <FiChevronRight />
         </Button>
       </ButtonWrapper>
-    </Wrapper>
+    </>
   );
 };
 
 export default CategoryPage;
-
-const Wrapper = styled("div")``;
-
-const ContentWrapper = styled("div")``;
 
 const ButtonWrapper = styled("div")`
   margin-top: 20px;

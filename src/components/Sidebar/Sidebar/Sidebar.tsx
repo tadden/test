@@ -5,10 +5,10 @@ import { Categories } from "../../../types/Categories";
 import { getCategories } from "../../../API/Api";
 import Item from "../SidebarItem/SidebarItem";
 import styled from "styled-components/macro";
-import Error from "../../Error";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaCat } from "react-icons/fa";
+import Error from "../../Error/Error";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);

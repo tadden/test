@@ -2,15 +2,16 @@ import { useQuery } from "react-query";
 import { getRandomCats } from "../API/Api";
 import { Items } from "../types/Items";
 import styled from "styled-components/macro";
-import Error from "../components/Error";
-import { Cats, Sidebar } from "../components";
+import Sidebar from "../components/Sidebar/Sidebar/Sidebar";
+import Cats from "../components/Cats/Cats/Cats";
+import Error from "../components/Error/Error";
 
 const HomePage = () => {
   const { isError, isLoading, data, error, refetch, isFetching } = useQuery<
     Items[]
   >(["cats"], getRandomCats);
 
-  const handleClick = () => {
+  const handleRandomClick = () => {
     refetch();
   };
 
@@ -20,20 +21,18 @@ const HomePage = () => {
   }
 
   return (
-    <Wrapper>
+    <>
       <Sidebar />
       <BtnWrapper>
-        <RandomBtn onClick={handleClick}>Randomize</RandomBtn>
+        <RandomBtn onClick={handleRandomClick}>Randomize</RandomBtn>
       </BtnWrapper>
 
       <Cats isFetching={isFetching} isLoading={isLoading} cats={data} />
-    </Wrapper>
+    </>
   );
 };
 
 export default HomePage;
-
-const Wrapper = styled("div")``;
 
 const BtnWrapper = styled("div")`
   display: flex;
