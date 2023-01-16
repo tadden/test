@@ -110,7 +110,7 @@ section {
 body {
   font-family: 'Montserrat', sans-serif;
   line-height: 1;
-  background-color: #f6e4be;;
+  background-color: #f6e4be;
 }
 
 ol,

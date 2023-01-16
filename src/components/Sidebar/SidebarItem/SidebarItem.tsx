@@ -10,9 +10,9 @@ type Props = {
 const SideBarItem = ({ id, name, isActive }: Props) => {
   return (
     <Wrapper>
-      <NavItem isActive={isActive}>
-        <NavLink to={`/${id}`}>{name}</NavLink>
-      </NavItem>
+      <NavLink to={`/${id}`} isActive={isActive}>
+        {name}
+      </NavLink>
     </Wrapper>
   );
 };
@@ -20,22 +20,20 @@ const SideBarItem = ({ id, name, isActive }: Props) => {
 export default SideBarItem;
 
 const Wrapper = styled("div")`
+  display: flex;
   &:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
 
-const NavItem = styled("li")<{ isActive: boolean }>`
+const NavLink = styled(Link)<{ isActive: boolean }>`
+  width: 100%;
+  color: #ffff;
   text-transform: uppercase;
-  padding: 10px;
-  background-color: ${(props) => props.isActive && "#f7e860"};
+  padding: 20px;
+  background-color: ${props => props.isActive && "#849b87"};
 
   &:hover {
-    background-color: #f7e860;
+    background-color: #849b87;
   }
-`;
-
-const NavLink = styled(Link)`
-  color: #ffff;
-  width: 100%;
 `;

@@ -43,17 +43,17 @@ const BtnWrapper = styled("div")`
 const RandomBtn = styled("button")`
   text-transform: uppercase;
   font-weight: bold;
-  color: #ffbc1f;
+  color: #e15b64;
   width: 140px;
   height: 40px;
   background-color: transparent;
-  border: 2px solid #ffbc1f;
+  border: 2px solid #e15b64;
   border-radius: 3px;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    background-color: #ffbc1f;
+    background-color: #f47e60;
     color: white;
   }
 `;

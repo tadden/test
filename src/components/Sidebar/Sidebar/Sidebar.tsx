@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   const { isError, data, error } = useQuery<Categories[]>(
     ["categories"],
-    getCategories
+    getCategories,
   );
 
   const handleSidebar = () => {
@@ -41,21 +41,19 @@ const Sidebar = () => {
         </HomeLink>
       </NavBar>
       <Nav isActive={sidebar}>
-        <SideBarList onClick={handleSidebar}>
-          <MenuClose to="#">
-            <AiOutlineClose onClick={handleSidebar} />
-          </MenuClose>
-          <ItemWrapper>
-            {data?.map(({ name, id }) => (
-              <Item
-                key={id}
-                name={name}
-                id={id}
-                isActive={id === Number(urlId)}
-              />
-            ))}
-          </ItemWrapper>
-        </SideBarList>
+        <MenuClose to="#">
+          <AiOutlineClose onClick={handleSidebar} />
+        </MenuClose>
+        <ItemWrapper onClick={handleSidebar}>
+          {data?.map(({ name, id }) => (
+            <Item
+              key={id}
+              name={name}
+              id={id}
+              isActive={id === Number(urlId)}
+            />
+          ))}
+        </ItemWrapper>
       </Nav>
     </>
   );
@@ -64,8 +62,8 @@ const Sidebar = () => {
 export default Sidebar;
 
 const ItemWrapper = styled("div")`
-  margin-top: 40px;
   text-align: center;
+  margin-top: 40px;
 `;
 
 const NavBar = styled("div")`
@@ -79,7 +77,7 @@ const HomeLink = styled(Link)`
   font-size: 2rem;
   margin-right: 40px;
   text-align: center;
-  color: #ffc847;
+  color: #f47e60;
 `;
 
 const LinkText = styled("span")`
@@ -90,21 +88,20 @@ const LinkText = styled("span")`
 const MenuBars = styled(Link)`
   margin-left: 20px;
   font-size: 2rem;
-  color: #ffc847;
+  color: #f47e60;
   background: none;
 `;
 
 const Nav = styled("nav")<{ isActive: boolean }>`
-  background-color: #ffbc1f;
+  background-color: #f47e60;
   width: 200px;
   height: 100vh;
   padding: 20px 0;
   position: fixed;
   top: 0;
-  left: ${(props) => (props.isActive ? "0" : "-100")}%;
-  transition: ${(props) => (props.isActive ? "350" : "850")}ms;
+  left: ${props => (props.isActive ? "0" : "-100")}%;
+  transition: ${props => (props.isActive ? "350" : "850")}ms;
 `;
-const SideBarList = styled("ul")``;
 
 const MenuClose = styled(Link)`
   display: flex;
